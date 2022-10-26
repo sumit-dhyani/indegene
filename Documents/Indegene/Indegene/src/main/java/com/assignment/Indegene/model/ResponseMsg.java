@@ -3,14 +3,19 @@ package com.assignment.Indegene.model;
 import java.time.LocalDateTime;
 
 public class ResponseMsg {
+    private int errorCode;
     private LocalDateTime timeStamp;
     private String message;
     private String details;
 
     public ResponseMsg() {
     }
+    public int getErrorCode() {
+        return errorCode;
+    }
 
-    public ResponseMsg(LocalDateTime timeStamp, String message, String details) {
+    public ResponseMsg(int errorCode,LocalDateTime timeStamp, String message, String details) {
+        this.errorCode=errorCode;
         this.timeStamp = timeStamp;
         this.message = message;
         this.details = details;

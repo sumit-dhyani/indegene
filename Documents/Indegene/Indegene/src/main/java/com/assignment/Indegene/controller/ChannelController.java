@@ -25,7 +25,7 @@ public class ChannelController {
         channel.setProjectDetails(projectDetails.get());
         }
         else{
-            throw new RecordNotFound("Id not found");
+            throw new RecordNotFound("Project with id:"+id+" not found");
         }
         return channelRepository.save(channel);
     }
