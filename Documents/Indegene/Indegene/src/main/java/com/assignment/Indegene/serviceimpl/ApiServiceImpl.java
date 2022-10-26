@@ -27,7 +27,8 @@ public class ApiServiceImpl implements ApiService {
     }
 
     public Project getProjectById(Long id){
-        return projectRepository.findById(id).orElseThrow(()-> new RecordNotFound("Project with id "+id+" not found"));
+        return projectRepository.findById(id)
+                .orElseThrow(()-> new RecordNotFound("Project with id "+id+" not found"));
     }
 
     public List<Project> getAllProjects() {
@@ -35,6 +36,11 @@ public class ApiServiceImpl implements ApiService {
     }
 
     public ProjectDetails getProjectDetailsById(long id) {
-        return projectDetailsRepo.getProjectDetailsById(id).orElseThrow(()->new RecordNotFound("Project with id " + id +" not found"));
+        return projectDetailsRepo.findProjectDetailsByProject_Id(id)
+                .orElseThrow(()->new RecordNotFound("Project with id " + id +" not found"));
+    }
+    public List<ProjectDetails> getProjectDetailsByChannelName(String name){
+        return projectDetailsRepo.findProjectDetailsByChannel_ChannelNameContainsIgnoreCase(name)
+                .orElseThrow(()->new RuntimeException("Channel Not Found"));
     }
 }

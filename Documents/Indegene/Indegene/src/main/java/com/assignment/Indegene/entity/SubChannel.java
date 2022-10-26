@@ -1,5 +1,7 @@
 package com.assignment.Indegene.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,6 +13,18 @@ public class SubChannel {
     private Long id;
     @Column(name = "`SUBCHANNEL_NAME`")
     private String subChannelName;
+
+    @ManyToOne
+    @JsonBackReference
+    private ProjectDetails projectDetails;
+
+    public ProjectDetails getProjectDetails() {
+        return projectDetails;
+    }
+
+    public void setProjectDetails(ProjectDetails projectDetails) {
+        this.projectDetails = projectDetails;
+    }
 
     public SubChannel() {
     }

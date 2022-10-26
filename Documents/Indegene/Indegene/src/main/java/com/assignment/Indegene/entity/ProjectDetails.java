@@ -1,6 +1,9 @@
 package com.assignment.Indegene.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "`PROJECT_DETAILS`")
@@ -14,12 +17,13 @@ public class ProjectDetails {
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "`PROJECT_ID`",referencedColumnName = "`PROJECT_ID`")
     private Project project;
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "`CHANNEL_ID`",referencedColumnName = "`CHANNEL_ID`")
-    private Channel channel;
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="`SUB_CHANNEL_ID`",referencedColumnName = "`SUBCHANNEL_ID`")
-    private SubChannel subChannel;
+    @OneToMany(mappedBy = "projectDetails")
+    @JsonManagedReference
+    private List<Channel> channel;
+    @OneToMany(mappedBy = "projectDetails")
+    @JsonManagedReference
+    private List<SubChannel> subChannel;
+
     public Long getId() {
         return id;
     }
@@ -27,7 +31,7 @@ public class ProjectDetails {
     public ProjectDetails() {
     }
 
-    public ProjectDetails(String brandName, Project project, Channel channel, SubChannel subChannel) {
+    public ProjectDetails(String brandName, Project project, List<Channel> channel, List<SubChannel> subChannel) {
         this.brandName = brandName;
         this.project = project;
         this.channel = channel;
@@ -50,19 +54,19 @@ public class ProjectDetails {
         this.project = project;
     }
 
-    public Channel getChannel() {
+    public List<Channel> getChannel() {
         return channel;
     }
 
-    public void setChannel(Channel channel) {
+    public void setChannel(List<Channel> channel) {
         this.channel = channel;
     }
 
-    public SubChannel getSubChannel() {
+    public List<SubChannel> getSubChannel() {
         return subChannel;
     }
 
-    public void setSubChannel(SubChannel subChannel) {
+    public void setSubChannel(List<SubChannel> subChannel) {
         this.subChannel = subChannel;
     }
 
