@@ -2,19 +2,19 @@ package com.assignment.Indegene.model;
 
 import java.time.LocalDateTime;
 
-public class ResponseMsg {
+public class ErrorEntity {
     private int errorCode;
     private LocalDateTime timeStamp;
     private String message;
     private String details;
 
-    public ResponseMsg() {
+    public ErrorEntity() {
     }
     public int getErrorCode() {
         return errorCode;
     }
 
-    public ResponseMsg(int errorCode,LocalDateTime timeStamp, String message, String details) {
+    public ErrorEntity(int errorCode, LocalDateTime timeStamp, String message, String details) {
         this.errorCode=errorCode;
         this.timeStamp = timeStamp;
         this.message = message;

@@ -1,0 +1,23 @@
+server:
+  port: 5500
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/indegene
+    username: postgres
+    password: Korebi@321
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  output:
+    ansi:
+      enabled: always
+  banner:
+    location: classpath:banner.txt
+keycloak:
+  realm: spring-keycloak
+  auth-server-url: http://localhost:8180/auth
+  resource: springboot-keycloak
+  public-client: true
+  bearer-only: true

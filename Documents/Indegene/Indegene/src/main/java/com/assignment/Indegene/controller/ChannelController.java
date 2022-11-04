@@ -4,8 +4,11 @@ import com.assignment.Indegene.entity.ProjectDetails;
 import com.assignment.Indegene.exceptions.RecordNotFound;
 import com.assignment.Indegene.repository.ChannelRepository;
 import com.assignment.Indegene.repository.ProjectDetailsRepository;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
 
 @RestController
@@ -18,6 +21,9 @@ public class ChannelController {
         this.projectDetailsRepository=projectDetailsRepository;
     }
     @PostMapping("{id}")
+    @RolesAllowed("Admin")
+    @Operation(tags = "Project Details Api",
+    summary = "Create new Channel")
     @ResponseStatus(HttpStatus.CREATED)
     public Channel createNewChannel(@PathVariable long id, @RequestBody Channel channel){
         Optional<ProjectDetails> projectDetails=projectDetailsRepository.findById(id);

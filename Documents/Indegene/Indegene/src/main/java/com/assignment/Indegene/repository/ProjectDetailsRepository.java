@@ -13,5 +13,5 @@ import java.util.Optional;
 public interface ProjectDetailsRepository extends JpaRepository<ProjectDetails,Long> {
    public Optional<ProjectDetails> findProjectDetailsByProject_Id(Long id);
 
-   public Optional<List<ProjectDetails>> findProjectDetailsByChannel_ChannelNameContainsIgnoreCase(String name);
+   public List<ProjectDetails> findProjectDetailsByChannel_ChannelNameContainsIgnoreCase(String name);
 }
